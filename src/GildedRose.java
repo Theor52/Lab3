@@ -1,13 +1,27 @@
-class GildedRose {
-    Item[] items;
+import java.util.List;
 
-    public GildedRose(Item[] items) {
+class GildedRose {
+    private final Items items;
+
+    public GildedRose(Items items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            updateItemQuality(items[i]);
+        items.updateQuality();
+    }
+}
+
+class Items {
+    private final List<Item> itemList;
+
+    public Items(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public void updateQuality() {
+        for (Item item : itemList) {
+            updateItemQuality(item);
         }
     }
 
