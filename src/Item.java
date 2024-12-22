@@ -1,16 +1,14 @@
 public class Item {
-    private ItemName name;
+    private ItemDetails details;
     private SellIn sellIn;
-    private ItemQuality quality;
 
     public Item(String name, int sellIn, int quality) {
-        this.name = new ItemName(name);
+        this.details = new ItemDetails(name, quality);
         this.sellIn = new SellIn(sellIn);
-        this.quality = new ItemQuality(quality);
     }
 
     public String getName() {
-        return name.getName();
+        return details.getName();
     }
 
     public int getSellInDays() {
@@ -22,23 +20,19 @@ public class Item {
     }
 
     public int getQuality() {
-        return quality.getQuality();
+        return details.getQuality();
     }
 
     public void setQuality(int value) {
-        quality.setQuality(value);
+        details.setQuality(value);
     }
 
     public void increaseQuality() {
-        if (quality.getQuality() < 50) {
-            quality.setQuality(quality.getQuality() + 1);
-        }
+        details.increaseQuality();
     }
 
     public void decreaseQuality() {
-        if (quality.getQuality() > 0) {
-            quality.setQuality(quality.getQuality() - 1);
-        }
+        details.decreaseQuality();
     }
 
     @Override
