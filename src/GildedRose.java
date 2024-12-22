@@ -18,15 +18,25 @@ class GildedRose {
 
         if (isSpecialItem(item)) {
             updateSpecialItem(item);
-        } else {
-            decreaseQuality(item);
+            decreaseSellIn(item);
+            if (item.sellIn < 0) {
+                increaseQuality(item);
+            }
+            return;
         }
 
+        decreaseQuality(item);
         decreaseSellIn(item);
-
-        if (item.sellIn < 0) {
-            handleExpiredItem(item);
+        if (item.sellIn >= 0) {
+            return;
         }
+
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.quality = 0;
+            return;
+        }
+
+        decreaseQuality(item);
     }
 
     private boolean isLegendary(Item item) {
@@ -48,16 +58,6 @@ class GildedRose {
             if (item.sellIn < 6) {
                 increaseQuality(item);
             }
-        }
-    }
-
-    private void handleExpiredItem(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            item.quality = 0;
-        } else {
-            decreaseQuality(item);
         }
     }
 
