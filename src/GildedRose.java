@@ -32,62 +32,47 @@ class Items {
 
         if (isSpecialItem(item)) {
             updateSpecialItem(item);
-            decreaseSellIn(item);
-            if (item.sellIn.getDays() < 0) {
-                increaseQuality(item);
+            item.decreaseSellInDays();
+            if (item.getSellInDays() < 0) {
+                item.increaseQuality();
             }
             return;
         }
 
-        decreaseQuality(item);
-        decreaseSellIn(item);
-        if (item.sellIn.getDays() >= 0) {
+        item.decreaseQuality();
+        item.decreaseSellInDays();
+        if (item.getSellInDays() >= 0) {
             return;
         }
 
-        if (item.name.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-            item.quality.setQuality(0);
+        if (item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.setQuality(0);
             return;
         }
 
-        decreaseQuality(item);
+        item.decreaseQuality();
     }
 
     private boolean isLegendary(Item item) {
-        return item.name.getName().equals("Sulfuras, Hand of Ragnaros");
+        return item.getName().equals("Sulfuras, Hand of Ragnaros");
     }
 
     private boolean isSpecialItem(Item item) {
-        return item.name.getName().equals("Aged Brie") || item.name.getName().equals("Backstage passes to a TAFKAL80ETC concert");
+        return item.getName().equals("Aged Brie") 
+            || item.getName().equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
     private void updateSpecialItem(Item item) {
-        increaseQuality(item);
+        item.increaseQuality();
 
-        if (item.name.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (item.sellIn.getDays() < 11) {
-                increaseQuality(item);
+        if (item.getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (item.getSellInDays() < 11) {
+                item.increaseQuality();
             }
 
-            if (item.sellIn.getDays() < 6) {
-                increaseQuality(item);
+            if (item.getSellInDays() < 6) {
+                item.increaseQuality();
             }
         }
-    }
-
-    private void increaseQuality(Item item) {
-        if (item.quality.getQuality() < 50) {
-            item.quality.setQuality(item.quality.getQuality() + 1);
-        }
-    }
-
-    private void decreaseQuality(Item item) {
-        if (item.quality.getQuality() > 0) {
-            item.quality.setQuality(item.quality.getQuality() - 1);
-        }
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn.setDays(item.sellIn.getDays() - 1);
     }
 }
