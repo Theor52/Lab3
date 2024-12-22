@@ -12,4 +12,8 @@ public class ItemQuality {
     public void setQuality(int quality) {
         this.quality = quality;
     }
+
+    public void addQuality(int value) {
+        this.quality += value;
+    }
 }

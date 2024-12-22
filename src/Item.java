@@ -16,7 +16,7 @@ public class Item {
     }
 
     public void decreaseSellInDays() {
-        sellIn.setDays(sellIn.getDays() - 1);
+        sellIn.addDays(-1);
     }
 
     public int getQuality() {

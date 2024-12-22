@@ -12,4 +12,8 @@ public class SellIn {
     public void setDays(int days) {
         this.days = days;
     }
+
+    public void addDays(int value) {
+        this.days += value;
+    }
 }

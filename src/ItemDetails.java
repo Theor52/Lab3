@@ -21,13 +21,13 @@ public class ItemDetails {
 
     public void increaseQuality() {
         if (quality.getQuality() < 50) {
-            quality.setQuality(quality.getQuality() + 1);
+            quality.addQuality(1);
         }
     }
 
     public void decreaseQuality() {
         if (quality.getQuality() > 0) {
-            quality.setQuality(quality.getQuality() - 1);
+            quality.addQuality(-1);
         }
     }
 } 
